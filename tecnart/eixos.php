@@ -1,6 +1,16 @@
 <?php
-include 'models/functions.php';
+include 'config/dbconnection.php';
+include 'models/newfunctions.php';
+$pdo = pdo_connect_mysql();
+
+registar_visita($pdo, "eixos.php");
 ?>
+
+
+<?= redirectPageLanguage("eixos.php","axes.php"); ?>
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +25,7 @@ include 'models/functions.php';
             <div class="heading_container3">
 
                 <h3 style="text-transform: uppercase;">
-                    <?= change_lang("axes-page-heading") ?>
+                    <?= get_titulo_eixos(1) ?>
                 </h3>
 
                 <div class="flex-container mobile_reverse">
@@ -26,48 +36,9 @@ include 'models/functions.php';
                         </figure>
                     </div>
                     <div class="flex-right">
-
-                        <p><?= change_lang("axes-page-p1-txt") ?></p>
-
-                        <p class="text-uppercase"><b>a) <?= change_lang("axes-page-a-txt") ?></b></p>
-                        <p class="text-uppercase"><b>b) <?= change_lang("axes-page-b-txt") ?></b></p>
-                        <br><br>
-                        <p><?= change_lang("axes-page-p2-txt") ?></p>
-
-
-                        <p><b>a1) </b><?= change_lang("axes-page-a-one-txt") ?></p>
-                        <p><b>a2) </b><?= change_lang("axes-page-a-two-txt") ?></p>
-                        <br>
-                        <p><?= change_lang("axes-page-p3-txt") ?></p>
-                        <p><b>b1) </b><?= change_lang("axes-page-b-one-txt") ?></p>
-
-                        <p><b>b2) </b><?= change_lang("axes-page-b-two-txt") ?></p>
-
-                        <p><?= change_lang("bottom-text") ?></p>
-
+                        <?= get_text_eixos(1) ?>
                     </div>
-                </div>
-
-                <!--                 <div class="flex-container">
-                    
-                    <div class="flex-left2">
-                        "tempor pulvinar. Vivamus ultrices egestas posuere. Integer magna orci, vestibulum."
-                    </div> 
-
-                    <div class="flex-right">
-                        <b>b) </b>Valorização do Património Artístico e Cultural<br><br>
-                        
-                        <b>b1) </b>Didática, Tecnologia e Comunicação<br><br>
-                        
-                        <b>b2) </b>Design e Inovação<br><br>
-
-                        Estas linhas de ação complementam-se e imbricam-se para que o todo que a missão do Techn&Art seja coerente e tire partido do visando 
-                        a transferência de conhecimento, de competências e de experiências de todos os investigadores e colaboradores do nosso centro.
-                        
-                    </div>
-
-                </div> -->
-               
+                </div>               
 
             </div>
          </div>

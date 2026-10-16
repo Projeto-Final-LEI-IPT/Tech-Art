@@ -1,0 +1,110 @@
+<?php
+require "../config/basedados.php";
+require "../verifica.php";
+
+// 1) Preparar permissões
+$tipoUtilizador = isset($_SESSION["autenticado"]) ? $_SESSION["autenticado"] : null;
+$mapaPermissoes   = [
+    'integrado'     => 'Integrado',
+    'colaborador'   => 'Colaborador',
+    'aluno'         => 'Aluno',
+    'externo'       => 'Externo',
+];
+
+
+// Função para verificar se o utilizador tem permissão
+function temPermissao($tipo, $permissoes, $mapaPermissoes) {
+    if ($tipo === 'administrador') return true;
+    if (in_array('todos', $permissoes)) return true;
+    return isset($mapaPermissoes[$tipo]) && in_array($mapaPermissoes[$tipo], $permissoes);
+}
+
+// 2) Buscar todos os documentos
+$sql    = "SELECT * FROM documentos_backoffice ORDER BY nome_arquivo";
+$result = $conn->query($sql);
+
+$documentosPermitidos = [];
+
+if ($result && $result->num_rows > 0) {
+    while ($doc = $result->fetch_assoc()) {
+      
+        // 2.1) Verifica permissão
+        $perms = array_map('trim', explode(',', $doc['permissoes']));
+        var_dump();
+          if (!temPermissao($tipoUtilizador, $perms, $mapaPermissoes)) {
+            continue;
+        }
+
+        // 2.2) Filtrar só ficheiros PT ou EN
+        /*$prefix = strtoupper(substr($doc['nome_arquivo'], 0, 2));
+        if (!in_array($prefix, ['PT', 'EN'])) {
+            continue;
+        } não faz sentido*/
+
+        $documentosPermitidos[] = $doc;
+    }
+}
+
+$conn->close();
+?>
+
+<!-- HTML -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <h3>📂 Documentos do BackOffice</h3>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered mb-4">
+        <thead class="thead-light">
+          <tr>
+            <th>Documento</th>
+            <th></th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php if (count($documentosPermitidos)): ?>
+          <?php foreach ($documentosPermitidos as $doc): 
+            $prefix = strtoupper(substr($doc['nome_arquivo'], 0, 2));
+          ?>
+          <tr>
+            <td><?= htmlspecialchars($doc['nome_arquivo']) ?></td>
+            <td>
+                <a href="download.php?file=<?= urlencode($doc['nome_arquivo']) ?>" target="_blank">Ver</a>
+             
+            </td>
+            <td>
+              <?php if ($tipoUtilizador === 'administrador'): ?>
+                <a href="remover.php?id=<?= $doc['id'] ?>" 
+                   class="btn btn-sm btn-danger" 
+                   onclick="return confirm('Tem certeza que deseja remover este documento?')">
+                  Remover
+                </a>
+                <a href="edit.php?id=<?= $doc['id'] ?>" 
+                   class="btn btn-sm btn-primary ml-2">
+                  Editar
+                </a>
+              <?php endif; ?>
+            </td>
+          </tr>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <tr>
+            <td colspan="4" class="text-center">Nenhum documento disponível para você.</td>
+          </tr>
+        <?php endif; ?>
+        </tbody>
+      </table>
+      <?php if ($tipoUtilizador === 'administrador'): ?> 
+      <div class="d-flex justify-content-end">
+        <a href="upload.php" class="btn btn-success">
+          <i class="fa fa-plus"></i> Adicionar Novo Documento
+        </a>
+      </div>
+      <?php endif; ?>
+    </div>
+  </div>
+</div>

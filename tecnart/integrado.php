@@ -1,19 +1,26 @@
 <?php
 include 'config/dbconnection.php';
-include 'models/functions.php';
+include 'models/newfunctions.php';
 
 $pdo = pdo_connect_mysql();
+
+if (!isset($_GET["integrado"])) {
+    die("O parâmetro 'integrado' está ausente na URL.");
+}
+$integradoId = $_GET["integrado"];
+
+redirectPageLanguageWithParam("integrado.php", "integrated.php", "integrado", $integradoId);
+
 $language = ($_SESSION["lang"] == "en") ? "_en" : "";
-$query = "SELECT id, email, nome,
+$query = "SELECT id, nome,
         COALESCE(NULLIF(sobre{$language}, ''), sobre) AS sobre,
         COALESCE(NULLIF(areasdeinteresse{$language}, ''), areasdeinteresse) AS areasdeinteresse,
         ciencia_id, tipo, fotografia, orcid, scholar, research_gate, scopus_id
         FROM investigadores WHERE id=? and tipo = \"Integrado\"";
 $stmt = $pdo->prepare($query);
-$stmt->bindParam(1, $_GET["integrado"], PDO::PARAM_INT);
+$stmt->bindParam(1, $integradoId, PDO::PARAM_INT);
 $stmt->execute();
 $investigadores = $stmt->fetch(PDO::FETCH_ASSOC);
-$id =  $_GET["integrado"];
 ?>
 
 <?= template_header('Integrado/a'); ?>
@@ -22,7 +29,7 @@ $id =  $_GET["integrado"];
 <section>
     <div class="totall">
         <div class="barraesquerda">
-            <h3 class="heading_h3" style="font-size: 38px; margin-bottom: 20px; padding-top: 60px; padding-right: 10px; padding-left: 60px; word-wrap: break-word;">
+            <h3 class="heading_h3">
                 <?= $investigadores['nome'] ?>
             </h3>
             <div class="canvasEmail" style="height:150px; padding-right: 10px;">
@@ -32,7 +39,6 @@ $id =  $_GET["integrado"];
                     <script>
                         const ratio = Math.ceil(window.devicePixelRatio);
                         const canvas = document.getElementById("canvas");
-                        const txt = "<?= $investigadores['email'] ?>";
                         const context = canvas.getContext("2d");
                         context.font = "15px 'Montserrat', sans-serif";
 
@@ -136,7 +142,7 @@ $id =  $_GET["integrado"];
                                 ORDER BY publication_year DESC, pt.$valorSiteName, data DESC";
 
             $stmt = $pdo->prepare($query);
-            $stmt->bindParam(':investigatorId', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':investigatorId', $integradoId, PDO::PARAM_INT);
             $stmt->execute();
             $publicacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

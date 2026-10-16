@@ -1,5 +1,5 @@
 <?php
-include 'models/functions.php';
+include 'models/newfunctions.php';
 ?>
 
 <!DOCTYPE html>

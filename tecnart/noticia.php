@@ -1,8 +1,9 @@
 <?php
 include 'config/dbconnection.php';
-include 'models/functions.php';
+include 'models/newfunctions.php';
 
 $pdo = pdo_connect_mysql();
+
 
 $language = ($_SESSION["lang"] == "en") ? "_en" : "";
 $query = "SELECT id,

@@ -3,7 +3,7 @@ require "../verifica.php";
 require "../config/basedados.php";
 require_once "../config/credentials.php";
 //Se o utilizador não é um administrador ou o proprio não tem permissão para alterar as publicações
-if ($_SESSION["autenticado"] != 'administrador' && $_SESSION["autenticado"] != $_GET["id"]) {
+if ($_SESSION["autenticado"] != 'administrador' && $_SESSION["userid"] != $_GET["id"]) {
     header("Location: index.php");
 }
 

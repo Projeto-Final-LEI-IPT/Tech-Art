@@ -1,5 +1,5 @@
 <?php
-include 'models/functions.php';
+include 'models/newfunctions.php';
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +34,10 @@ include 'models/functions.php';
                 <div>
                     <b><?= change_lang("copyright-students") ?></b>
                     <div class="ml-2 mt-1">
+                        <b>2024/2025</b>
+                        <br>Daniel Afonso Amegroud nº 20615<br>
+                        <br>Guilherme de Matos Simões nº 25259<br><br>
+
                         <b>2022/2023</b>
                         <br>Ângela Daniela Violante dos Reis nº 20946<br>
                         <br>Miguel Bruno Gonçalves Modesto nº 23033<br><br>

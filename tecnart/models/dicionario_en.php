@@ -20,26 +20,19 @@ function ret_dic_en()
         //::::::CABEÇALHO PRINCIPAL::::::
 
         //Imagem com o logotipo da techn&art
-        "header-site-logo" => "./assets/images/TechnArt11FundoTrans.png",
+        "header-site-logo" => "./assets/images/techneart-h-neg-en.svg",
         //Drop-down 'Sobre o Techn&Art'
-        "about-technart-drop-down" => "About TECHN&ART",
+        "about-technart-drop-down" => "ABOUT",
         "mission-and-goals-option" => "Mission and Goals",
         "research-axes-option" => "Research Axes",
         "org-struct-option" => "Organic Structure",
         "opportunities-option" => "Opportunities",
-        "regulation-option" => "Regulations",
-        "electoral-process" => "Electoral Process ",
-        "regulation-option-geral" => "General Regulations",
-        "electoral-option-geral" => "Eleitoral Regulations",
-        "electoral-calendar-option-geral" => "Electoral Calendar (last update: june 2, 2025)",
-        "electoral-calendar-option-geral-rectification" => "Rectification Statement",
-        "voters-notebook" => "Voters Notebook",
-        "application-admitted" => "Application Admitted",
+        "regulation-option" => "Documents",
         "funding-option" => "Funding",
         //Drop-down 'Projetos'
         "projects-tab" => "Projects",
         "ongoing-option" => "Ongoing",
-        "finished-option" => "Finished",
+        "finished-option" => "Completed",
         //Drop-down 'Investigadores/as'
         "researchers-drop-down" => "Researchers",
         "integrated-option" => "Integrated",
@@ -61,10 +54,18 @@ function ret_dic_en()
         "address-txt-2" => "Estrada da Serra",
         //Etiqueta / texto 'Siga-nos',
         "follow-us-txt" => "Follow Us",
+        //Etiqueta / texto com Financiado por fund
+        "Finance-txt" => "Financed in whole or in part by FCT, the Fundação para a Ciência e a Tecnologia, I.P. under Grant of: <br>",
+        "Finance-01" => "UID/05488/2025",
+        "Finance-01-doi" => "https://doi.org/10.54499/UID/05488/2025",
+        "Finance-02" => "UID/PRR/05488/2025",
+        "Finance-02-doi" => "https://doi.org/10.54499/UID/PRR/05488/2025",
+        "Finance-03" => "UID/PRR2/05488/2025",
+        "Finance-03-doi" => "https://doi.org/10.54499/UID/PRR2/05488/2025",
         //Divisoria com 'projeto UD ...'
-        "project-ud-txt" => "Project UID/05488/2020",
+         "project-ud-txt" => "Project UID/05488/2020",
         //Etiqueta / texto com 'Instituto Pol...'
-        "ipt-copyright-txt" => "©Polytechnic University of Tomar",
+        "ipt-copyright-txt" => "©2026 TECHN&ART - UnivPT",
         //Etiqueta / texto com 'Todos os direitos reservados'
         "all-rights-reserved-txt" => "All rights reserved",
 
@@ -100,7 +101,7 @@ function ret_dic_en()
         //Titulo 'Sobre o Techn&Art'
         "about-technart-page-heading" => "About TECHN&ART",
         //Subitulo página 'Sobre o Techn&Art'
-        "about-technart-page-subtitle" => "The <b>TECHN&ART - Technology, Restoration and Arts Enhancement Center</b> is a research and development unit of the Polytechnic Institute of Tomar. TECHN&ART brings together researchers from multiple disciplinary areas with the mission of developing research strategies and methodologies in the field of <b>Safeguarding and Enhancement of Artistic and Cultural Heritage</b> in its various forms of expression. This work is carried out with a sustainable, holistic, and transdisciplinary approach, aiming to connect the present with the past.",
+        "about-technart-page-subtitle" => "The <b>TECHN&ART - Technology, Restoration and Arts Enhancement Center</b> is a research and development unit of the Polytechnic University of Tomar. TECHN&ART brings together researchers from multiple disciplinary areas with the mission of developing research strategies and methodologies in the field of <b>Safeguarding and Enhancement of Artistic and Cultural Heritage</b> in its various forms of expression. This work is carried out with a sustainable, holistic, and transdisciplinary approach, aiming to connect the present with the past.",
         //Legenda 'Missao e Objetivos'
         "mission-and-goals-caption" => "MISSION AND GOALS",
         //Legenda 'Eixos de Investigacao'
@@ -121,7 +122,7 @@ function ret_dic_en()
         //ponto 2
         "mission-and-goals-page-point-two" => "This R&amp;D unit's mission is:",
         //ponto 2, alinea a)
-        "mission-and-goals-page-a-txt" => "Contribute to the consolidation of IPT's training programs within the listed scientific domains;",
+        "mission-and-goals-page-a-txt" => "Contribute to the consolidation of UnivPT's training programs within the listed scientific domains;",
         //ponto 2, alinea b)
         "mission-and-goals-page-b-txt" => "Contribute to the solid education of students by fostering collaboration between the scientific research work conducted by TECHN&ART researchers.",
         //ponto 2, alinea c)
@@ -244,7 +245,9 @@ function ret_dic_en()
         "team-steakholders-tab-title-class" => "Team and steakholders",
         //Subtitulo separador 'equipa e intervenientes'
         "team-steakholders-tab-subtitle-class" => "Subtitle",
-        //
+
+        //Titulo investigador principal
+        "team-principal-res-tab-title-class" => "Principal researcher",
 
         //::::::integrados.php/colaboradores.php/alunos.php::::::
 
@@ -312,11 +315,6 @@ function ret_dic_en()
         "new-admissions-regulations-link" => "general regulations document.",
         "new-admissions-regulations-fill" => "Fill out Form",
         "new-admissions-regulations-file" => "Regulations.pdf",
-        "electoral-regulations-file" => "ElectoralRegulations.pdf",
-        "electoral-calendar-2025-file" => "CalendárioEleicoes2025.pdf",
-        "electoral-calendar-2025-file-rectification" => "DeclaracaoRetificacao.pdf",
-        "electoral-calendar-2025-voters-notebook" => "CadernoEleitoral2025b.pdf",
-        "electoral-calendar-2025-application-admitted" => "CandidaturaAdmitida2025.pdf",
 
         //:::admiissao.php
         //Título

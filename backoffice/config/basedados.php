@@ -4,8 +4,8 @@ require 'credentials.php';
 $servername = "127.0.0.1";
 $username = USERNAME;
 $password = PASSWORD;
-$dbname = "technart";
-$charset = "utf8mb4";
+$dbname = "c14ntecneartbd";
+$charset = "utf8";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);

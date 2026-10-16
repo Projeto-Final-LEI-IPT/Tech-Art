@@ -1,6 +1,6 @@
 <?php
 require "./config/dbconnection.php";
-require "models/functions.php";
+require "models/newfunctions.php";
 include_once "config/configurations.php";
 
 //Guardar um ficheiro na pasta pedido_<id pedido> mudando o nome do ficheiro

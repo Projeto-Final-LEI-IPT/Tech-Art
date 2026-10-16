@@ -1,8 +1,12 @@
 <?php
 include 'config/dbconnection.php';
-include 'models/functions.php';
+include 'models/newfunctions.php';
+
 
 $pdo = pdo_connect_mysql();
+
+registar_visita($pdo, "oportunidades.php");
+
 $language = ($_SESSION["lang"] == "en") ? "_en" : "";
 
 $query = "SELECT id,COALESCE(NULLIF(titulo{$language}, ''), titulo) AS titulo,visivel,imagem FROM oportunidades WHERE visivel=true ORDER BY ID DESC";
@@ -10,6 +14,8 @@ $stmt = $pdo->prepare($query);
 $stmt->execute();
 $oportunidades = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
+<?= redirectPageLanguage("oportunidades.php", "opportunities.php") ?>
 
 <!DOCTYPE html>
 <html>

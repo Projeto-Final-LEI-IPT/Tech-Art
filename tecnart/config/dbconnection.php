@@ -1,12 +1,18 @@
 <?php
+if (!isset($_SESSION)) {
+  session_start();
+}
+
 require 'credentials.php';
 
 function pdo_connect_mysql() {
     $host = '127.0.0.1';
-    $db = 'technart';
+    $db = 'c14ntecneartbd';
     $user = USERNAME;
     $pass = PASSWORD;
+    //$charset = 'utf8mb4';
     $charset = 'utf8';
+    
 
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
     $options = [

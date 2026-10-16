@@ -1,6 +1,13 @@
 <?php
-include 'models/functions.php';
+include 'config/dbconnection.php';
+include 'models/newfunctions.php';
+
+$pdo = pdo_connect_mysql();
+
+registar_visita($pdo, "novasadmissoes.php");
 ?>
+
+<?= redirectPageLanguage("novasadmissoes.php","new_admissions.php"); ?>
 
 <!DOCTYPE html>
 <html>

@@ -1,4 +1,4 @@
 <?php
-define('USERNAME', 'root');
-define('PASSWORD','');
+define('USERNAME', 'c14ntechneart');
+define('PASSWORD','Gv#uhL97zQfN');
 ?>

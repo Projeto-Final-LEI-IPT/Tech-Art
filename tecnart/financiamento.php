@@ -1,6 +1,15 @@
 <?php
-include 'models/functions.php';
+include 'config/dbconnection.php';
+include 'models/newfunctions.php';
+
+$pdo = pdo_connect_mysql();
+
+registar_visita($pdo, "financiamento.php");
 ?>
+
+
+<?=redirectPageLanguage("financiamento.php","funding.php") ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -18,157 +27,221 @@ include 'models/functions.php';
                 </h3>
                 <div style="padding-top: 30px;">
                     <p><?= change_lang("funding-p1") ?></p>
-                    <p style="text-transform: uppercase;"><strong><?= change_lang("funding-title") ?></strong></p>
-                    <!-- Table 1 -->
-                    <!-- Table 1 -->
+                    <p>&nbsp;</p>
                     <div class="table-responsive">
                         <table class="table table-bordered responsive-table" style="max-width: 100%;">
                             <tbody>
                                 <tr>
-                                    <td colspan="2" rowspan="2">
-                                        <p><strong><?= change_lang("funding-table1-project") ?></strong></p>
-                                    </td>
-                                    <td>
-                                        <p>UID/05488/2020</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p><?= change_lang("funding-table1-project-name") ?></p>
+                                    <td colspan="3">
+                                        <p><strong>UID/05488/2025</strong></p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <p><strong><?= change_lang("funding-table1-investigator") ?></strong></p>
+                                        <p><strong>Valor do Financiamento</strong></p>
                                     </td>
                                     <td>
-                                        <p>Doutora Hermínia Sol</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <p><strong><?= change_lang("funding-table1-promoter") ?></strong></p>
-                                    </td>
-                                    <td>
-                                        <p>IP Tomar</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <p><strong><?= change_lang("funding-table1-date-celebration") ?></strong></p>
-                                    </td>
-                                    <td>
-                                        <p>14/05/2020</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td rowspan="2">
-                                        <p><strong><?= change_lang("funding-table1-execution-period") ?></strong></p>
-                                    </td>
-                                    <td>
-                                        <p><strong><?= change_lang("funding-table1-start-date") ?></strong></p>
-                                    </td>
-                                    <td>
-                                        <p>01/01/2020</p>
+                                        <p><strong>726 295,29 €</strong></p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <p><strong><?= change_lang("funding-table1-end-date") ?></strong></p>
+                                        <p><strong>Instituição(ões) de Gestão</strong></p>
                                     </td>
                                     <td>
-                                        <p>31/12/2024</p>
+                                        <p><strong>Designação da(s) Instituição(ões)</strong></p>
+                                    </td>
+                                    <td>
+                                        <p><strong>Montante de Financiamento</strong></p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">
-                                        <p><strong><?= change_lang("funding-table1-total-investment") ?></strong></p>
+                                    <td>
+                                        <p>Principal</p>
                                     </td>
                                     <td>
-                                        <p>691 750,00€</p>
+                                        <p>Instituto Politécnico de Tomar</p>
+                                    </td>
+                                    <td>
+                                        <p>471 851,49 €</p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">
-                                        <p><strong><?= change_lang("funding-table1-funding") ?></strong></p>
+                                    <td>
+                                        <p>Participante</p>
                                     </td>
                                     <td>
-                                        <p>691 750,00€</p>
+                                        <p>Instituto Politécnico de Castelo Branco</p>
+                                    </td>
+                                    <td>
+                                        <p>63 610,95 €</p>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        <p>Participante</p>
+                                    </td>
+                                    <td>
+                                        <p>Instituto Politécnico da Guarda</p>
+                                    </td>
+                                    <td>
+                                        <p>190 832,85 €</p>
+                                    </td>
+                                </tr>
+                                <td colspan="2">
+                                        <p><strong>Total</strong></p>
+                                    </td>
+                                    <td>
+                                        <p><strong>726 295,29 €</strong></p>
+                                    </td>
                             </tbody>
                         </table>
                     </div>
-
                     <p>&nbsp;</p>
-                    <p><?= change_lang("funding-p2") ?></p>
-                    <p style="text-transform: uppercase;"><strong><?= change_lang("funding-title-2") ?></strong>&nbsp;</p>
-                    <div class="table-responsive">
-                        <table class="table table-bordered" style="height: 102px;">
+                </div>
+                <div class="table-responsive">
+                        <table class="table table-bordered responsive-table" style="max-width: 100%;">
                             <tbody>
                                 <tr>
-                                    <td style="width: 170px; height: 10px;" width="170">
-                                        <p><strong><?= change_lang("funding-tables-universal-code") ?></strong></p>
-                                    </td>
-                                    <td width="217">
-                                        <p>UIDB/05488/2020</p>
+                                    <td colspan="3">
+                                        <p><strong>UID/PRR/05488/2025</strong></p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td width="170">
-                                        <p><strong><?= change_lang("funding-tables-funding") ?></strong></p>
+                                    <td colspan="2">
+                                        <p><strong>Valor de Financiamento</strong></p>
                                     </td>
-                                    <td width="217">
-                                        <p>353 750,00€</p>
+                                    <td>
+                                        <p><strong>66 879,85 €</strong></p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td width="170">
-                                        <p><strong><?= change_lang("funding-tables-execution-period") ?></strong></p>
+                                    <td>
+                                        <p><strong>Instituição(ões) de Gestão</strong></p>
                                     </td>
-                                    <td width="217">
-                                        <p>01/01/2020 - 31/12/2024</p>
+                                    <td>
+                                        <p><strong>Designação da(s) Instituição(ões)</strong></p>
+                                    </td>
+                                    <td>
+                                        <p><strong>Montante de Financiamento</strong></p>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        <p>Principal</p>
+                                    </td>
+                                    <td>
+                                        <p>Instituto Politécnico de Tomar</p>
+                                    </td>
+                                    <td>
+                                        <p>36 594,63 €</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Participante</p>
+                                    </td>
+                                    <td>
+                                        <p>Instituto Politécnico de Castelo Branco</p>
+                                    </td>
+                                    <td>
+                                        <p>7 571,30 €</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Participante</p>
+                                    </td>
+                                    <td>
+                                        <p>Instituto Politécnico da Guarda</p>
+                                    </td>
+                                    <td>
+                                        <p>22 713,91 €</p>
+                                    </td>
+                                </tr>
+                                <td colspan="2">
+                                        <p><strong>Total</strong></p>
+                                    </td>
+                                    <td>
+                                        <p><strong>66 879,85 €</strong></p>
+                                    </td>
                             </tbody>
                         </table>
+                        <p><strong>Equipamentos Software / Justificação</strong></p>
+                        <p>Licença: Licença perpétua do software AVID Sibelius Ultimate EDU para a Unidade de Gestão do TECHN&ART no IPCB, com financiamento através do projeto PRR UID/PRR/05488/2025. Este Software  é a ferramenta técnica indispensável para o trabalho de transcrição e preservação de Música Tradicional Portuguesa, permitindo a conversão de recolhas e campo em edições críticas de elevada qualidade científica.</p>
                     </div>
-
-                    <!-- Paragraphs -->
-
-                    <!-- Table 3 -->
                     <p>&nbsp;</p>
-                    <p style="text-transform: uppercase;"><strong><?= change_lang("funding-title-3") ?></strong></p>
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
+                </div>
+                <div class="table-responsive">
+                        <table class="table table-bordered responsive-table" style="max-width: 100%;">
                             <tbody>
                                 <tr>
-                                    <td width="170">
-                                        <p><strong><?= change_lang("funding-tables-universal-code") ?></strong></p>
-                                    </td>
-                                    <td width="217">
-                                        <p>UIDP/05488/2020</p>
+                                    <td colspan="3">
+                                        <p><strong>UID/PRR2/05488/2025</strong></p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td width="170">
-                                        <p><strong><?= change_lang("funding-tables-funding") ?></strong></p>
+                                    <td colspan="2">
+                                        <p><strong>Valor de Financiamento</strong></p>
                                     </td>
-                                    <td width="217">
-                                        <p>338 000,00 €</p>
+                                    <td>
+                                        <p><strong>37 327,60 €</strong></p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td width="170">
-                                        <p><strong><?= change_lang("funding-tables-execution-period") ?></strong></p>
+                                    <td>
+                                        <p><strong>Instituição(ões) de Gestão</strong></p>
                                     </td>
-                                    <td width="217">
-                                        <p>01/01/2020 - 31/12/2024</p>
+                                    <td>
+                                        <p><strong>Designação da(s) Instituição(ões)</strong></p>
+                                    </td>
+                                    <td>
+                                        <p><strong>Montante de Financiamento</strong></p>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        <p>Principal</p>
+                                    </td>
+                                    <td>
+                                        <p>Instituto Politécnico de Tomar</p>
+                                    </td>
+                                    <td>
+                                        <p>20 424,54 €</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Participante</p>
+                                    </td>
+                                    <td>
+                                        <p>Instituto Politécnico de Castelo Branco</p>
+                                    </td>
+                                    <td>
+                                        <p>4 225,77€</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Participante</p>
+                                    </td>
+                                    <td>
+                                        <p>Instituto Politécnico da Guarda</p>
+                                    </td>
+                                    <td>
+                                        <p>12 677,30 €</p>
+                                    </td>
+                                </tr>
+                                <td colspan="2">
+                                        <p><strong>Total</strong></p>
+                                    </td>
+                                    <td>
+                                        <p><strong>37 327,60 €</strong></p>
+                                    </td>
                             </tbody>
                         </table>
                     </div>
+                    <p>&nbsp;</p>
                 </div>
             </div>
         </div>

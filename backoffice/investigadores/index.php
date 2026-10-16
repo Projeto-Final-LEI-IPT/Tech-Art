@@ -1,13 +1,55 @@
 <?php
 require "../verifica.php";
-require "../config/basedados.php";
+require "../config/basedados.php";~
 
 $find = "";
 
 
-$sql = "SELECT id, nome, email, ciencia_id, sobre, tipo, fotografia, areasdeinteresse, orcid, scholar FROM investigadores 
-ORDER BY CASE WHEN tipo = 'Externo' THEN 1 ELSE 0 END, tipo DESC, nome;";
+
+
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+
+
+
+
+//Alterações efetuadas a partir daqui
+$perPage = 10;
+
+
+
+
+//Se $search for "projeto": A consulta SQL será: SELECT * FROM projetos WHERE nome LIKE '%projeto%';
+//Isso vai retornar todos os registros onde o campo nome contém a palavra "projeto", independentemente do que venha antes ou depois dela.Exemplos de resultados:
+//Projeto de melhoria , Novo Projeto , Projeto A ,etc
+$searchName =  '%' . $search . '%';
+
+
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+$start = ($page - 1) * $perPage;
+
+
+
+
+
+$sql = "SELECT id, nome, email, ciencia_id, sobre, tipo, fotografia, areasdeinteresse, orcid, scholar FROM investigadores WHERE nome LIKE '$searchName'
+ORDER BY CASE WHEN tipo = 'Externo' THEN 1 ELSE 0 END, tipo DESC, nome LIMIT $start, $perPage;";
+
 $result = mysqli_query($conn, $sql);
+
+
+
+$totalSql = "SELECT COUNT(*) FROM investigadores WHERE nome LIKE '$searchName'";
+$totalResult = mysqli_query($conn, $totalSql);
+$totalRows = mysqli_fetch_row($totalResult)[0];
+$totalPages = ceil($totalRows / $perPage);
+
+
+
+//Alterações efetuadas até aqui 
+
+
+
 
 if (isset($_POST["anoRelatorio"])) {
 	$_SESSION["anoRelatorio"] = $_POST["anoRelatorio"];
@@ -81,11 +123,45 @@ if (@$_SESSION["anoRelatorio"] != "") {
 					<div class="col-sm-6">
 						<h2>Investigadores/as</h2>
 					</div>
-					<?php if ($_SESSION["autenticado"] == 'administrador') { ?>
-						<div class="col-sm-6">
+                    
+					
+					
+					<!--Alterações efetuadas aqui -->
+
+					<!-- passei de "col-sm-6" para "col text-center" o que permitiu centralizar a barra de pesquisa e ajustei a barra de pesquisa mais ao centro possivel
+					  atraves do "margin-left"-->
+				    <div class="col text-center " style="margin-left: -150px;">
+
+                          <form method="GET" action="">
+							
+							   <!--aqui também usei um "margin-left" que permite à "lupinha" estar numa posição mais agradável ao interagir com a interface  -->
+                               <div class="input-group" style="margin-left:-80px;"  >
+
+                        <!-- Campo de pesquisa -->
+                                     <input type="text" name="search" class="form-control" placeholder="Pesquisar">
+            
+                     <!-- Botão com a lupa dentro da caixa de pesquisa -->
+                     <div class="input-group-append">
+                          <button class="btn btn-outline-secondary" type="submit">
+                            <i class="material-icons">search</i>
+                          </button>
+                          </div>
+                     </div>
+                           </form>
+                     </div>
+
+                 <!--Alterações efetuadas aqui -->
+				 <?php if ($_SESSION["autenticado"] == 'administrador') { ?>
+					<!-- passei de "col-sm-6" para "col-auto" , o que fará com que o botão ocupe apenas o espaço necessário   -->
+						<div class="col-auto">
 							<a href="create.php" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar Novo Perfil</span></a>
 						</div>
 					<?php } ?>
+
+
+				
+
+
 				</div>
 			</div>
 			<table class="table table-striped table-hover">
@@ -107,9 +183,9 @@ if (@$_SESSION["anoRelatorio"] != "") {
 					<?php
 					if (mysqli_num_rows($result) > 0) {
 						while ($row = mysqli_fetch_assoc($result)) {
-							if ($_SESSION["autenticado"] == 'administrador' || $_SESSION["autenticado"] == $row["id"]) {
+							
 								echo "<tr>";
-								echo "<td>" . $row["tipo"] . "</td>";
+								echo "<td>" . $row["tipo"] . "/a</td>";
 								echo "<td>" . $row["nome"] . "</td>";
 								echo "<td>" . $row["email"] . "</td>";
 								echo "<td>" . $row["ciencia_id"] . "</td>";
@@ -120,26 +196,62 @@ if (@$_SESSION["anoRelatorio"] != "") {
 								echo "<td>".$row["scholar"]."</td>";
 								*/
 								echo "<td><img src='../assets/investigadores/$row[fotografia]' width = '100px' height = '100px'></td>";
+								if ($_SESSION["autenticado"] == 'administrador' || $_SESSION["userid"]==$row["id"] ) {
 								echo "<td style='min-width:250px;'><a href='edit.php?id=" . $row["id"] . "' class='w-100 mb-1 btn btn-primary'><span>Alterar Perfil</span></a>";
+								}
 								if ($_SESSION["autenticado"] == 'administrador') {
 									echo "<a href='remove.php?id=" . $row["id"] . "' class='w-100 mb-1 btn btn-danger'><span>Apagar</span></a><br>";
 								}
-								if ($row["tipo"] != "Externo") {
+								if ($_SESSION["autenticado"] == 'administrador' || $_SESSION["userid"]==$row["id"] ) {
 									echo "<a href='resetpassword.php?id=" . $row["id"] . "' class='w-100 mb-1 btn btn-warning'><span>Alterar Password</span></a><br>";
 									//echo "<a data-id='" . $row["id"] . "' class='gerarRelatorio w-100 mb-1 btn btn-info'><span>Gerar Relatório</span></a><br>";
 									echo "<a href='publicacoes.php?id=" . $row["id"] . "' class='w-100 mb-1 btn btn-secondary'><span>Selecionar Publicações</span></a><br>";
 								}
 								echo "</td>";
 								echo "</tr>";
-							}
+							
 						}
 					}
 					?>
 				</tbody>
 			</table>
-		</div>
-	</div>
+        <!-- Paginação -->
+			<div class="pagination">
+
+                    <!-- Botão "Anterior" -->
+					<!--Verificar se $page (número da página atual) é maior que 1.
+                        Se for maior, exibe o botão "Anterior".
+                        Se a página atual for a primeira (1), não exibe o botão.-->
+                    <?php if ($page > 1): ?>
+                        <a href="?search=<?= $search ?>&page=<?= $page - 1 ?>" class="btn btn-secondary">Anterior</a>
+                    <?php endif; ?>
+
+                    
+					<!-- Exibir os botões numerados de página apenas se o número total de projetos ($totalRows) for maior ou igual a 5-->
+                     <?php if ($totalRows >= 5): ?>
+						<!-- Gerar os botões numerados de 1 até....-->
+                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                           <a href="?search=<?= $search ?>&page=<?= $i ?>" class="btn btn-light"><?= $i ?></a>
+                        <?php endfor; ?>
+                    <?php endif; ?>
+
+                    <!-- Botão "Próximo" -->
+					 <!--Verifica se a página atual $page é menor que o total de páginas $totalPages.
+                         Se for menor, exibe o botão "Próximo".
+                         Caso contrário, o botão não é exibido.-->
+                    <?php if ($page < $totalPages): ?>
+                        <a href="?search=<?= $search ?>&page=<?= $page + 1 ?>" class="btn btn-secondary">Próximo</a>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+   
+
+
+
+     
 
 <script>
 	const Cite = require('citation-js');

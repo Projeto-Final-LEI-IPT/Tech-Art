@@ -19,28 +19,21 @@ function ret_dic_pt(){
         //::::::CABEÇALHO PRINCIPAL::::::
 
         //Imagem com o logotipo da techn&art
-        "header-site-logo" => "./assets/images/TechnArt5FundoTrans.png",
+        "header-site-logo" => "./assets/images/techneart-h-neg-pt.svg",
         //Drop-down 'Sobre o Techn&Art'
-        "about-technart-drop-down" => "Sobre o TECHN&ART",
+        "about-technart-drop-down" => "SOBRE",
         "mission-and-goals-option" => "Missão e Objetivos",
         "research-axes-option" => "Eixos de Investigação",
         "org-struct-option" => "Estrutura Orgânica",
         "opportunities-option" => "Oportunidades",
-        "regulation-option" => "Regulamentos",
-        "electoral-process" => "Processo Eleitoral ",
-        "regulation-option-geral" => "Regulamento Geral",
-        "electoral-option-geral" => "Regulamento Eleitoral",
-        "electoral-calendar-option-geral" => "Calendário Eleitoral (última atualização: 2 de junho de 2025)",
-        "electoral-calendar-option-geral-rectification" => "Declaração de Retificação",
-        "voters-notebook" => "Caderno de Eleitores/as",
-        "application-admitted" => "Candidatura Admitida",
+        "regulation-option" => "Documentos",
         "funding-option" => "Financiamento",
         //Drop-down 'Projetos'
         "projects-tab" => "Projetos",
         "ongoing-option" => "Em Curso",
         "finished-option" => "Concluídos",
         //Drop-down 'Investigadores/as'
-        "researchers-drop-down" => "Investigadores/as",
+        "researchers-drop-down" => "EQUIPA",
         "integrated-option" => "Integrados/as",
         "collaborators-option" => "Colaboradores/as",
         "students-option" => "Estudantes Colaboradores/as",
@@ -53,7 +46,7 @@ function ret_dic_pt(){
         //::::::RODAPÉ PRINCIPAL::::::
 
         //Imagem com o logotipo da techn&art
-        "footer-site-logo" => "./assets/images/TechnArt6FundoTrans.png",
+        "footer-site-logo" => "./assets/images/techneart.svg",
         //Etiqueta / texto com parte da morada
         "address-txt-1" => "Quinta do Contador,",
         //Etiqueta / texto com parte da morada
@@ -63,7 +56,16 @@ function ret_dic_pt(){
         //Divisoria com 'projeto UD ...'
         "project-ud-txt" => "Projeto UID/05488/2020",
         //Etiqueta / texto com 'Instituto Pol...'
-        "ipt-copyright-txt" => "©Instituto Politécnico de Tomar",
+        "ipt-copyright-txt" => "©2026 TECHN&ART - UnivPT",
+
+        //Etiqueta / texto com Financiado por fund
+        "Finance-txt" => "Financiado total ou parcialmente pela FCT, Fundação para a Ciência e a Tecnologia, I.P., sob o Financiamento de: <br>",
+        "Finance-01" => "UID/05488/2025",
+        "Finance-01-doi" => "https://doi.org/10.54499/UID/05488/2025",
+        "Finance-02" => "UID/PRR/05488/2025",
+        "Finance-02-doi" => "https://doi.org/10.54499/UID/PRR/05488/2025",
+        "Finance-03" => "UID/PRR2/05488/2025",
+        "Finance-03-doi" => "https://doi.org/10.54499/UID/PRR2/05488/2025",
         //Etiqueta / texto com 'Todos os direitos reservados'
         "all-rights-reserved-txt" => "Todos os direitos reservados",
 
@@ -76,7 +78,7 @@ function ret_dic_pt(){
         //Titulo do 2 slide
         "index-second-slide" => "Tecnologia e interdisciplinaridade ao serviço do Património",
         //Breve descricao do 2 slide
-        "index-second-slide-desc" => "O TECHN&ART une investigadores/as das mais diversas áreas disciplinares presentes no Instituto Politécnico de Tomar, das TIC às artes, das ciências sociais às ciências naturais",
+        "index-second-slide-desc" => "O TECHN&ART une investigadores/as das mais diversas áreas disciplinares presentes na Universidade Politécnica de Tomar, das TIC às artes, das ciências sociais às ciências naturais",
         //Titulo do 3 slide
         "index-third-slide-slider" => "Investigação e desenvolvimento em rede",
         //Breve descricao do 3 slide
@@ -99,7 +101,7 @@ function ret_dic_pt(){
         //Titulo 'Sobre o Techn&Art'
         "about-technart-page-heading" => "Sobre o TECHN&ART",
         //Subitulo página 'Sobre o Techn&Art'
-        "about-technart-page-subtitle" => "O <b>TECHN&ART - Centro de Tecnologia, Restauro e Valorização das Artes</b> - é uma unidade de investigação e desenvolvimento do Instituto Politécnico de Tomar. O TECHN&ART reúne investigadores/as de múltiplas áreas disciplinares, com a missão de desenvolver estratégias e metodologias de investigação no âmbito da <b>Salvaguarda e Valorização do Património Artístico e Cultural</b>, nas suas diversas formas de expressão. Este trabalho desenvolve-se numa abordagem que se pretende sustentável, holística e transdisciplinar, com o propósito de ligar o presente ao passado. Este trabalho desenvolve-se numa abordagem que se pretende sustentável, holística e transdisciplinar, com o propósito de ligar o presente ao passado.",
+        "about-technart-page-subtitle" => "O <b>TECHN&ART - Centro de Tecnologia, Restauro e Valorização das Artes</b> - é uma unidade de investigação e desenvolvimento da Universidade Politécnica de Tomar. O TECHN&ART reúne investigadores/as de múltiplas áreas disciplinares, com a missão de desenvolver estratégias e metodologias de investigação no âmbito da <b>Salvaguarda e Valorização do Património Artístico e Cultural</b>, nas suas diversas formas de expressão. Este trabalho desenvolve-se numa abordagem que se pretende sustentável, holística e transdisciplinar, com o propósito de ligar o presente ao passado. Este trabalho desenvolve-se numa abordagem que se pretende sustentável, holística e transdisciplinar, com o propósito de ligar o presente ao passado.",
         //Legenda 'Missao e Objetivos'
         "mission-and-goals-caption" => "MISSÃO E OBJETIVOS",
         //Legenda 'Eixos de Investigacao'
@@ -120,7 +122,7 @@ function ret_dic_pt(){
         //ponto 2
         "mission-and-goals-page-point-two" => "Esta unidade de I&D tem por missão:",
         //ponto 2, alinea a)
-        "mission-and-goals-page-a-txt" => "Contribuir para a consolidação dos programas de formação do IPT enquadrados nos domínios científicos listados;",
+        "mission-and-goals-page-a-txt" => "Contribuir para a consolidação dos programas de formação da UnivPT enquadrados nos domínios científicos listados;",
         //ponto 2, alinea b)
         "mission-and-goals-page-b-txt" => "Contribuir para a sólida formação das/os alunas/os estreitando a colaboração entre os trabalhos de investigação científica desenvolvidos pelas/os investigadoras/es TECHN&ART;",
         //ponto 2, alinea c)
@@ -191,6 +193,8 @@ function ret_dic_pt(){
         "org-struct-page-advisory-council-tag" => "Conselho Consultivo",
         //Elementos integrantes do conselho consultivo
         "advisory-council-one" => "Ana María Calvo Manuel, Faculdade de Belas Artes da Universidade Complutense de Madrid, Espanha.",
+
+        //já não é usado
         "advisory-council-two" => "Chao Gejin, Instituto de Tradição Oral da Academia Chinesa de Ciências Sociais, Pequim, China",
         "advisory-council-three" => "José Julio García Arranz, Universidade da Extremadura, Espanha.",
         "advisory-council-four" => "Laurent Tissot, Universidade de Neuchâtel, Suíça.",
@@ -243,6 +247,9 @@ function ret_dic_pt(){
         "team-steakholders-tab-title-class" => "Equipa e intervenientes",
         //Subtitulo separador 'equipa e intervenientes'
         "team-steakholders-tab-subtitle-class" => "Subtitulo ",
+
+        //Titulo investigador principal
+        "team-principal-res-tab-title-class" => "Investigador/a principal",
         //
 
         //::::::integrados.php/colaboradores.php/alunos.php::::::
@@ -311,11 +318,6 @@ function ret_dic_pt(){
         "new-admissions-regulations-link" => "regulamento geral do TECHN&ART.",
         "new-admissions-regulations-fill" => "Preencher Formulário",
         "new-admissions-regulations-file" => "Regulamento.pdf",
-        "electoral-regulations-file" => "RegulamentoEleitoral.pdf",
-        "electoral-calendar-2025-file" => "CalendárioEleicoes2025.pdf",
-        "electoral-calendar-2025-file-rectification" => "DeclaracaoRetificacao.pdf",
-        "electoral-calendar-2025-voters-notebook" => "CadernoEleitoral2025b.pdf",
-        "electoral-calendar-2025-application-admitted" => "CandidaturaAdmitida2025.pdf",
 
         //:::admissao.php
         //Título
