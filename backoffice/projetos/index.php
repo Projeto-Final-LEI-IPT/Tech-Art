@@ -77,23 +77,34 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 //Se $start = 5 e $perPage = 5, a consulta SQL será: "LIMIT 5, 5"==> Isto significa: "Começar a partir do 6º registro (índice 5) e trazer 5 registros."
 $start = ($page - 1) * $perPage;
 
+if ($_SESSION["autenticado"] == 'administrador') {
 
-
-//o LIMIT garante que apenas um número específico de registros seja retornado, permitindo mostrar os resultados de forma paginada
+    //o LIMIT garante que apenas um número específico de registros seja retornado, permitindo mostrar os resultados de forma paginada
+	//filtragem de modo a que quando o utilizador seja administrador, ele consiga ver todos os projetos, mas quando for investigador, ele só consegue ver os projetos que estão associados a ele 
 $sql = "SELECT id, nome, referencia, areapreferencial, financiamento, fotografia, concluido 
         FROM projetos 
-        WHERE nome LIKE '$searchName' 
+        WHERE nome LIKE '$searchName'
         ORDER BY nome
 		LIMIT $start, $perPage";
-
-
+    $totalSql = "SELECT COUNT(*) FROM projetos WHERE nome LIKE '$searchName'";
+}
+else{
+    $sql = "SELECT id, nome, referencia, areapreferencial, financiamento, fotografia, concluido, ip.investigador_principal
+        	FROM projetos p
+			INNER JOIN investigadores_projetos ip ON
+			ip.projetos_id = p.id
+        	WHERE nome LIKE '$searchName' and ip.investigadores_id = '{$_SESSION['userid']}'
+			ORDER BY nome
+			LIMIT $start, $perPage";
+    $totalSql = "SELECT COUNT(*) FROM projetos p
+				INNER JOIN investigadores_projetos ip ON
+				ip.projetos_id = p.id
+				WHERE nome LIKE '$searchName' and ip.investigadores_id = '{$_SESSION['userid']}'
+			";
+}
 
 $result = mysqli_query($conn, $sql);
 
-
-// Consulta SQL para contar o número total de projetos na base de dados que atendem ao critério de pesquisa ($searchName)
-//A coluna COUNT(*) retorna sempre apenas uma linha,
-$totalSql = "SELECT COUNT(*) FROM projetos WHERE nome LIKE '$searchName'";
 
 //Executar a consulta SQL criada na linha anterior ($totalSql) na base de dados e armazenar o resultado na variável $totalResult
 $totalResult = mysqli_query($conn, $totalSql);
@@ -224,7 +235,10 @@ $totalPages = ceil($totalRows / $perPage);
 										$selected[] = $row1['investigadores_id'];
 									}
 								}
-								if ($_SESSION["autenticado"] == "administrador" || in_array($_SESSION["autenticado"], $selected)) {
+								/**
+								 * filtragem de modo a que quando o utilizador seja administrador, ele consiga editar ou remover todos os projetos, mas quando for investigador, ele só consegue editar ou remover os projetos onde o mesmo é investigador principal
+								 */
+								if ($_SESSION["autenticado"] == "administrador" || in_array($_SESSION["autenticado"], $selected) || $row["investigador_principal"] == true) {
 									echo "<td><a href='edit.php?id=" . $row["id"] . "' class='btn btn-primary'><span>Alterar</span></a></td>";
 									echo "<td><a href='remove.php?id=" . $row["id"] . "' class='btn btn-danger'><span>Apagar</span></a></td>";
 								}
