@@ -4,42 +4,37 @@ require "../config/basedados.php";~
 
 $find = "";
 
-
-
-
 $search = isset($_GET['search']) ? $_GET['search'] : '';
-
-
-
 
 //Alterações efetuadas a partir daqui
 $perPage = 10;
-
-
-
 
 //Se $search for "projeto": A consulta SQL será: SELECT * FROM projetos WHERE nome LIKE '%projeto%';
 //Isso vai retornar todos os registros onde o campo nome contém a palavra "projeto", independentemente do que venha antes ou depois dela.Exemplos de resultados:
 //Projeto de melhoria , Novo Projeto , Projeto A ,etc
 $searchName =  '%' . $search . '%';
 
-
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
 $start = ($page - 1) * $perPage;
 
-
-
-
-
-$sql = "SELECT id, nome, email, ciencia_id, sobre, tipo, fotografia, areasdeinteresse, orcid, scholar FROM investigadores WHERE nome LIKE '$searchName'
+/*
+Este código gera o SQL que obtem os investigadores e as suas informações da base de dados.
+Se o utilizador for "administrador", todos os investigadores são obtidos
+Caso contrário, significa que o utilizador é apenas um "investigador" e apenas deve poder ver e controlar o seu próprio utilizador
+*/
+if ($_SESSION["autenticado"] == 'administrador') {
+	$sql = "SELECT id, nome, email, ciencia_id, sobre, tipo, fotografia, areasdeinteresse, orcid, scholar FROM investigadores WHERE nome LIKE '$searchName'
 ORDER BY CASE WHEN tipo = 'Externo' THEN 1 ELSE 0 END, tipo DESC, nome LIMIT $start, $perPage;";
+	$totalSql = "SELECT COUNT(*) FROM investigadores WHERE nome LIKE '$searchName'";
+}
+else{
+	$sql = "SELECT id, nome, email, ciencia_id, sobre, tipo, fotografia, areasdeinteresse, orcid, scholar FROM investigadores WHERE id = '{$_SESSION['userid']}'";
+	$totalSql = "SELECT COUNT(*) FROM investigadores WHERE id = '{$_SESSION['userid']}'";
+}
 
 $result = mysqli_query($conn, $sql);
 
-
-
-$totalSql = "SELECT COUNT(*) FROM investigadores WHERE nome LIKE '$searchName'";
 $totalResult = mysqli_query($conn, $totalSql);
 $totalRows = mysqli_fetch_row($totalResult)[0];
 $totalPages = ceil($totalRows / $perPage);
@@ -47,9 +42,6 @@ $totalPages = ceil($totalRows / $perPage);
 
 
 //Alterações efetuadas até aqui 
-
-
-
 
 if (isset($_POST["anoRelatorio"])) {
 	$_SESSION["anoRelatorio"] = $_POST["anoRelatorio"];
@@ -130,6 +122,7 @@ if (@$_SESSION["anoRelatorio"] != "") {
 
 					<!-- passei de "col-sm-6" para "col text-center" o que permitiu centralizar a barra de pesquisa e ajustei a barra de pesquisa mais ao centro possivel
 					  atraves do "margin-left"-->
+					<?php if ($_SESSION["autenticado"] == 'administrador'): ?>
 				    <div class="col text-center " style="margin-left: -150px;">
 
                           <form method="GET" action="">
@@ -149,6 +142,7 @@ if (@$_SESSION["anoRelatorio"] != "") {
                      </div>
                            </form>
                      </div>
+					 <?php endif; ?>
 
                  <!--Alterações efetuadas aqui -->
 				 <?php if ($_SESSION["autenticado"] == 'administrador') { ?>
